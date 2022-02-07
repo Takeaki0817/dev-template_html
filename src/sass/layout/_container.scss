@@ -1,0 +1,27 @@
+@use '../global' as g;
+
+%container {
+	width: 92%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.ly_container-sm {
+	@extend %container;
+	max-width: g.$contentWidthS;
+}
+
+.l-container {
+	@extend %container;
+	max-width: g.$contentWidth;
+}
+
+.ly_container-lg {
+	@extend %container;
+	max-width: g.$contentWidthL;
+}
+
+.ly_container-xl {
+	@extend %container;
+	max-width: 1400px;
+}

@@ -1,0 +1,96 @@
+@use './color' as c;
+
+// 矢印
+// ---------------------
+@mixin arrow(
+	$color: var(--baseFontColor),
+	$rotate: 45deg,
+	$w: 6px,
+	$h: 6px,
+	$left: 0,
+	$right: auto
+) {
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		left: $left;
+		right: $right;
+		width: $w;
+		height: $h;
+		border-top: 2px solid $color;
+		border-right: 2px solid $color;
+		transform: rotate($rotate);
+	}
+}
+
+// 隠しコンテンツ
+// ---------------------
+@mixin visuallyHidden() {
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	border: 0;
+	padding: 0;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	margin: -1px;
+}
+
+// アスペクト比計算
+// ---------------------
+@mixin aspectRatio($width: 16, $height: 9) {
+	position: relative;
+	padding-top: percentage($height / $width);
+
+	> * {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100% !important;
+		height: 100% !important;
+	}
+}
+
+// z-index
+// ---------------------
+$layer: (
+	modal: 100,
+	header: 30,
+	menu: 30,
+	default: 1,
+);
+
+@mixin zIndex($key) {
+	z-index: map-get($layer, $key);
+}
+
+// 背景グラデーション
+// ---------------------
+@mixin bgGradient($degree: 90deg, $start: #000, $end: #fff) {
+	background-image: linear-gradient($degree, $start, $end);
+}
+
+// マーカーのような下線
+// ---------------------
+@mixin marker($color: #000, $alpha: 0.8) {
+	display: inline;
+	background: linear-gradient(transparent 70%, rgba($color, $alpha) 0%);
+}
+
+// スクロールバーを消去
+// ---------------------
+@mixin scrollbarNone {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
