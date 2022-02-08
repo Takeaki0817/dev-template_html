@@ -174,6 +174,6 @@ exports.default = parallel(
 	compressCss,
 	concatJs,
 	imageOptimaze,
-	watchFiles
+	watchFiles,
 	browserSyncFunc
 );
