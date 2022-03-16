@@ -119,8 +119,6 @@ const imageOptimaze = (done) => {
 const concatJs = (done) => {
 	src(paths.scripts.src)
 		.pipe(plumber())
-		.pipe(jshint())
-		.pipe(jshint.reporter('default'))
 		.pipe(
 			babel({
 				presets: ['@babel/env'],
@@ -133,7 +131,7 @@ const concatJs = (done) => {
 
 // compress js file(s)
 const compressJs = (done) => {
-	src(paths.scripts.dest)
+	src(paths.scripts.dest + '/bundle.js')
 		.pipe(plumber())
 		.pipe(uglify())
 		.pipe(rename('bundle.min.js'))
@@ -169,9 +167,8 @@ const watchFiles = (done) => {
 	done();
 };
 
-exports.default = parallel(
+exports.default = series(
 	compileSass,
-	compressCss,
 	concatJs,
 	imageOptimaze,
 	watchFiles,
