@@ -28,7 +28,7 @@ const uglify = require('gulp-uglify');
 const browserSync = require('browser-sync');
 
 const dir = {
-	dest: 'dest',
+	dest: 'dist',
 	dev: 'src',
 };
 
